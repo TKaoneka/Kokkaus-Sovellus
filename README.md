@@ -1,6 +1,6 @@
 # Kokkaus-Sovellus
 
-Päätin kurssiprojektia varten tekemään sovellusta ruuantekoa varten. Tämä on ollut idea, joka minulla on ollut vuoden alusta lähtien ja olen innostunut tekemään kyseistä sovellusta! Toisin kuin muut ruokasovellukset, jossa reseptin tuottajat ovat usein ammattikokkeja, haluamassani sovellus kannustaa käyttäjien lisäämään omia reseptejä. Tässä on lyhyt kokoelma sovelluksen käytöstä:
+Kurssiprojektia varten haluan tehdä sovellusta ruuantekoa varten. Tämä on ollut idea, joka minulla on ollut vuoden alusta lähtien ja olen innostunut tekemään kyseistä sovellusta! Toisin kuin muut ruokasovellukset, jossa reseptin tekijät ovat usein ammattikokkeja, haluamani sovellus kannustaa käyttäjien lisäämään omia reseptejä. Tässä on lyhyt kokoelma sovelluksen toiminnoista:
 
 * Käyttäjä voi luoda käyttäjätunnuksen ja kirjautua sisään sekä ulos sovelluksesta
 * Sovelluksessa on eri tapoja etsiä haluamasi ruokareseptejä, riippuen mitä ja miten haluat kokata. Sovelluksessa aikoa olla eri osa miten voi etsiä reseptejä esim. keittiön tyyppien perusteella, kuten välimeren, etelä-aasian, etelä-amerikan ja länsi-afrikan ruuat
