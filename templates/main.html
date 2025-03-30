@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Etusivu</h2>
+        <form action="file:///home/xthxthx/Downloads/haku.html" method="post">
+            <p>
+                Etsi:
+                <input type="text" name="Hae reseptejä">
+            </p>
+            <input type="submit" value="Hae">
+        </form>
+        <h4>Profiilisi</h4>
+        <h4>Reseptit</h4>
+        <ul>
+            {% for i in recipes %}
+            <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+        <h4>Blogit</h4>
+        <ul>
+            {% for j in blogs %}
+            <li>{{ j }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
