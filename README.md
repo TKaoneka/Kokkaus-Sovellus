@@ -11,3 +11,9 @@ Kurssiprojektia varten haluan tehdä sovellusta ruuantekoa varten. Tämä on oll
 * Käyttäjä voi myös lisätä sovellukseen omia reseptejä, johon voi antaa kommentteja ja arvosanoja, sekä reddit-tyyppisiä postauksia johon voi esim. kysyä kokkaus- tai laihtumisvinkkejä tai yleisen keskustelun kokkaukseen liittyvä
 * Käyttäjä voi lisätä kuvia reseptiin esim. tarvittavat tarvikkeet, reseptin eri vaiheet jne.
 *Sovelluksessa on käyttäjäsivut, jossa näkyy käyttäjän ilmoitukset, muiden käyttäjien arvostetut ilmoitukset, käyttäjän kommentit ja käyttäjän seuratut sekä seuraajat.
+
+(30.03.25.)
+* Sovelluksessa on muutama uusi sivu, jossa on kaikki tarvittavat asiat tekemään uuden tilin, mutta tilinpoistoa ei ole. Nämä sivut ovat olemassa "templates" kansiossa
+* Tietokanta on olemassa, mutta ei .db tiedoston muotona
+* Sovelluksen suorituksen tekemä koodi app.py sivun muodostaman koodi ei ole valmiina
+* Tapa tehdä kommentteja, arvosteluja ja blogeja, sekä niiden etsiminen eivät ole vielä olemassa
