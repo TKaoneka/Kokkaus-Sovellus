@@ -25,3 +25,4 @@ Kurssiprojektia varten haluan tehdä sovellusta ruuantekoa varten. Tämä on oll
 * Tietokannasta ei voi vielä lajitella tai soudata tietoa
 * Tietoa ei voida muokata tai poistaa, vain lisätä
 * Käyttäjä ei voi kirjautua ulos
+* (Myös pitäisi lisätä, että tietokanta ei ole .db muotona. Se on vieläkin SQL-tiedosto)
