@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Log In</title>
+    </head>
+
+    <body>
+
+        <h1>Kokkilokki</h1>
+        <h2>Sisäänkirjautuminen</h2>
+        <h3>Tervetuloa!</h3>
+        <h4>Ole hyvä ja kirjaudu sisään.</h4>
+        <form action="/confirm" method="post">
+            <p>
+                Käyttäjätunnus:
+                <input type="text" name="username_log">
+                <br></br>
+                Salasana:
+                <input type="password" name="password_log">
+            </p>
+            <input type="submit" value="Log in">
+        </form>
+        <p style="color:red;">{{ i }}</p>
+        <p><a href="uustili.html">Tee uusi tili</a></p>
+        <p>Unohtuiko salasana?</p>
+    </body>
+</html>

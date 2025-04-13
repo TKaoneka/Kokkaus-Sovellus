@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Lisää blogi</h2>
+        <form action="/luoblogi" method="post">
+            <p>
+                Kirjoita otsikko:
+                <input type="text" name="otsikko">
+            </p>
+            <p> Ilmaise itseäsi:
+                <textarea name="blogtext" rows="10" cols="200" maxlength="5000"></textarea>
+            </p>
+            <input type="submit" value="Luo blogi">
+        </form>
+    </body>
+</html>
