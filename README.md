@@ -17,3 +17,11 @@ Kurssiprojektia varten haluan tehdä sovellusta ruuantekoa varten. Tämä on oll
 * Tietokanta on olemassa, mutta ei .db tiedoston muotona
 * Sovelluksen suorituksen tekemä koodi app.py sivun muodostaman koodi ei ole valmiina
 * Tapa tehdä kommentteja, arvosteluja ja blogeja, sekä niiden etsiminen eivät ole vielä olemassa
+
+(13.04.25.)
+* Sovelluksen perus piirteet pitäisi olla paikoillaan. Nämä ovat ne piirteet, jotka antavat ihmisen luoda tilin, reseptin ja blogin huolimatta sekä hakea niitä postauksen tunnuksen tai otsikon perusteella
+* Sovellukseen on lisätty "kommentti" ja "arvostelu" ominaisuuksia, mutta niitä ei vielä ole toteutettu kunnolla 
+* Sovelluksen edelliset muodostetut sivut pitäisi toimia kuin on tahdottu
+* Tietokannasta ei voi vielä lajitella tai soudata tietoa
+* Tietoa ei voida muokata tai poistaa, vain lisätä
+* Käyttäjä ei voi kirjautua ulos
