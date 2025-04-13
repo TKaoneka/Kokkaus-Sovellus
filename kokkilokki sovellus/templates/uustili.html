@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Create account</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Uusi tili</h2>
+        <h3>Tervetuloa kokkilokkiin!</h3>
+        <h4>Ole hyvä ja tee uusi tili.</h4>
+        <form action="/newacc" method="post">
+            <p>
+                Luo käyttäjätunnus: <br />
+                <input type="text" name="username_new">
+                <br />
+                Luo salasana: <br />
+                <input type="password" name="password_new">
+                <br />
+                Kirjoita salasana uudestaan: <br />
+                <input type="password" name="password_new2">
+            </p>
+            <input type="submit" value="Create account">
+        </form>
+        <p style="color:red;">{{ i }}</p>
+    </body>
+</html>
