@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Etusivu</h2>
+        {% if session.username %}
+        <form action="/haku" method="post">
+            <p>
+                Etsi:
+                <input type="text" name="searchbar">
+            </p>
+            <input type="submit" value="Hae">
+        </form>
+        <h4><a href="profiili.html">Profiilisi ({{ session.username }})</a></h4>
+        <h4>Reseptit</h4>
+        <ul>
+            {% for i in recipes %}
+            <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+        <h4>Blogit</h4>
+        <ul>
+            {% for j in blogs %}
+            <li>{{ j }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h3>Et ole kirjautunut sisään.</h3>
+        <p><a href="login.html">Ole hyvä ja kirjaudu sisään tai tee uusi tili!</a></p>
+    </body>
+</html>
