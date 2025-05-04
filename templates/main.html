@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Etusivu</h2>
+        <form action="/search" method="get">
+            <p>
+                Etsi:
+                <input type="text" name="searchbar" size="60" maxlength="200">
+            </p>
+            <input type="submit" value="Hae">
+        </form>
+        {% if session.username %}
+        <h4><a href="/profile/{{ session.id }}">Profiilisi ({{ session.username }})</a></h4>
+        <p><a href="/logout">Kirjaudu ulos</a></p>
+        <h3><a href="/new_recipe">Tee uusi resepti</a> tai <a href="/newblog">kirjoita blogi!</a></h3>
+        {% else %}
+        <h4><a href="/login">Kirjaudu sisään</a> tai <a href="/registration">tee uusi tili</a></h4>
+        {% endif %}
+        <h2>Reseptit</h2>
+        <ul>
+            {% for i in recipes %}
+            <li>
+                <img src="/thumbnail/{{ i.id }}" alt="reseptin lopputulos"/>
+                <a href="/recipe/{{ i.id }}">{{ i.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <h2>Blogit</h2>
+        <ul>
+            {% for j in blogs %}
+            <li><a href="/blog/{{ j.id }}">{{ j.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

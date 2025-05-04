@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Lisää resepti</h2>
+        <form action="/new_recipe" method="post" enctype="multipart/form-data">
+            <h4>
+                Kirjoita otsikko: 
+                <input type="text" name="title" required/>
+            </h4>
+
+            <p>
+                <b>Lisää jpg-tiedoston ruuasta</b>, joka on maksimissaan 100 KT: 
+                <input type="file" name="thumbnail" accept=".jpg" required/>
+            </p>
+
+            <h2>Luettele tarvittavia välineitä:</h2>
+
+            <label for="ingredient">Kirjoita tarvittavia ainesosia: </label>
+            <input type="text" id="ingredient" value=""/>
+
+            <label for="quantity">Määrä:</label>
+            <input type="number" id="quantity" min="1"/>
+
+            <label for="unit">Valitse yksikkö:</label>
+            <input type="text" id="unit" value=""/>
+
+            <button type="button" onclick="addIngredient()">Lisää reseptiin</button>
+                        
+            <h3>Valittuja tarvikkeita:</h3>
+            <ul id="recipeList"></ul>
+            <input type="hidden" name="ingredients" id="hiddenIngredients" min="1" required />
+
+            <h2>Kauan kestää?</h2>
+
+            <p><b>Valmistusaika:</b></p>
+            <p>
+                Tunteja: <input type="number" name="preptimeh" min="0" max="1000" required/>
+                Minuutteja: <input type="number" name="preptimem" min="1" max="59" required>
+            </p>
+
+            <p><b>Keittoaika:</b></p>
+            <p>
+                Tunteja: <input type="number" name="cooktimeh" min="0" max="1000" required/>
+                Minuutteja: <input type="number" name="cooktimem" min="1" max="59" required/>
+            </p>
+            
+            <h2><label for="recipestep">Kirjoita resepti:</label></h2>
+            
+            <ol id="recipeSteps"></ol>
+            <textarea id="recipestep" rows="4" cols="40"></textarea>
+            <br />
+            <button type="button" onclick="addStep()">Lisää reseptiin</button>
+            <br />
+            <input type="hidden" name="steps" id="hiddenSteps">
+            <input type="submit" value="Luo resepti">
+        </form>
+
+        <script>
+            let ingredientList = []
+            let stepList = []
+            function addIngredient() {
+                let ingredient = document.getElementById("ingredient").value;
+                let quantity = document.getElementById("quantity").value;
+                let unit = document.getElementById("unit").value;
+
+                if (ingredient) {
+                    if (quantity > 0) {
+                        let listIngredient = document.createElement("li");
+                        listIngredient.textContent = unit ? `${ingredient} (${quantity} ${unit})` : `${quantity} ${ingredient}`;
+                        ingredientList.push(listIngredient.textContent);
+
+                        let deleteButton = document.createElement("button");
+                        deleteButton.type = "button";
+                        deleteButton.textContent = "Poista";
+                        deleteButton.onclick = function() {
+                            deleteIngredient(listIngredient);
+                        }
+
+                        listIngredient.appendChild(deleteButton);
+                        document.getElementById("recipeList").appendChild(listIngredient);
+                        document.getElementById("hiddenIngredients").value = ingredientList.join(", ");
+                    } else {
+                        alert("Ole hyvä ja kerro ainesosan määrä");
+                    }
+                } else {
+                    alert("Ole hyvä ja kirjoita tarvittavat tarvikkeet");
+                }
+            }
+
+            function addStep() {
+
+                let step = document.getElementById("recipestep").value;
+
+                if (step) {
+                    let listStep = document.createElement("li");
+                    listStep.textContent = step;
+                    stepList.push(step);
+
+                    let editButton = document.createElement("button");
+                    editButton.type = "button"
+                    editButton.textContent = "Muokkaa";
+                    editButton.onclick = function() {
+                        editStep(listStep, step);
+                    };
+
+                    let deleteButton = document.createElement("button");
+                    deleteButton.type = "button";
+                    deleteButton.textContent = "Poista";
+                    deleteButton.onclick = function() {
+                        deleteStep(listStep);
+                    };
+
+                    listStep.appendChild(editButton);
+                    listStep.appendChild(deleteButton);
+                    document.getElementById("recipeSteps").appendChild(listStep);
+                    document.getElementById("hiddenSteps").value = stepList.join(", ");
+                } else {
+                    alert("Ei voi olla tyhjä tekstikenttä.");
+                }
+            }
+
+            function deleteIngredient(listIngredient) {
+                ingredientList = ingredientList.filter(ingredient => ingredient !== listIngredient.textContent);
+                document.getElementById("hiddenIngredients").value = ingredientList.join(", ");
+                listIngredient.remove();
+            }
+
+            function deleteStep(listStep) {
+                stepList = stepList.filter(step => step !== listStep.textContent);
+                document.getElementById("hiddenSteps").value = stepList.join(", ");
+                listStep.remove();
+            }
+
+            function editStep(listStep, oldStep) {
+                let newStep = prompt("Muokkaa vaihe:", oldStep);
+                if (newStep) {
+                    listStep.textContent = newStep;
+                    stepList[stepList.indexOf(oldStep)] = newStep;
+                    document.getElementById("hiddenSteps").value = stepList.join(", ");
+                    listStep.innerHTML = newStep;
+                    
+                    let editButton = document.createElement("button");
+                    editButton.type = "button"
+                    editButton.textContent = "Muokkaa";
+                    editButton.onclick = function() {
+                        editStep(listStep, newStep);
+                    };
+
+                    let deleteButton = document.createElement("button");
+                    deleteButton.type = "button";
+                    deleteButton.textContent = "Poista";
+                    deleteButton.onclick = function() {
+                        deleteStep(listStep);
+                    };
+                    
+                    listStep.appendChild(editButton);
+                    listStep.appendChild(deleteButton);
+                }
+            }
+
+            document.getElementById('thumbnail').addEventListener('change', function() {
+                const fileInput = this;
+                const file = fileInput.files[0];
+
+                if (file) {
+                    const fileType = file.type;
+                    if (fileType !== 'image/jpeg') {
+                        alert('Ole hyvä ja valitse JPEG-muodossa oleva kuva!');
+                        fileInput.value = '';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

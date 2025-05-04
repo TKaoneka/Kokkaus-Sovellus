@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Muokkaa blogia</h2>
+        <h3>{{ blog.title }}</h3>
+
+        <form action="/edit_blog/{{ blog_id }}" method="post">
+            <p>
+                Teksti:<br />
+                <textarea name="editedtext" rows="5" cols="100">{{ blog.content }}</textarea>
+            </p>
+            <input type="submit" value="Lähetä" />
+        </form>
+    </body>
+</html>

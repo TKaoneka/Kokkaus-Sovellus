@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1><a href="/">Kokkilokki</a></h1>
+
+        <h2>{{ recipe.title }}</h2>
+        <img src="/thumbnail/{{ recipe.id }}" alt="reseptin lopputulos"/>
+
+        <p><b>Valmistusaika:</b> {{ details.preptimeh }}h {{ details.preptimem }}min</p>
+        <p><b>Keittoaika:</b> {{ details.cooktimeh }}h {{ details.cooktimem }}min</p>
+
+        {% if user.has_pfp %}
+        <h4><a href="/profile/{{ recipe.user_id }}">{{ user.username }}</a></h4>
+        {% endif %}
+
+        <p>{{ recipe.time_posted }}</p>
+
+        <ol>
+            {% for i in steps %}
+            <li>
+                {{ i.step }}
+            </li>
+            {% endfor %}
+        </ol>
+
+        {% if session.id == recipe.user_id %}
+        <p><a href="/edit_recipe/{{ recipe.id }}">Muokkaa</a> | <a href="/remove_recipe/{{ recipe.id }}">Poista</a></p>
+        {% else %}
+        <form action="/new_review/{{ recipe.id }}" method="post">
+            <h3>Lisää arvostelu</h3>
+            <p>Arvosana: 
+                <input type="number" name="grade" min="1" max="5" />
+            </p>
+            <p>
+                Arvostelu: <br />
+                <textarea type="text" name="review" rows="3" cols="40"></textarea>
+            </p>
+            <input type="submit" value="Lähetä" />
+        </form>
+        {% endif %}
+
+        {% if totals.total == 0 %}
+        <h3>Arvostelut (yhteensä 0)</h3>
+        {% else %}
+        <h3>Arvostelut (yhteensä {{ totals.total }}, KA {{ totals.avg }})</h3>
+        {% endif %}
+
+        <ul>
+            {% for i in reviews %}
+            <li>
+                <p><a href="/recipe/{{ recipe.id }}#{{ i.id }}">{{ i.stars }}/5</a></p>
+                <p><b>{{ i.review }}</b></p>
+
+                {% if i.has_pfp %}
+                <img src="/photo/{{ i.reviewer }}" alt="arvostelijan profiilikuva"/>
+                {% endif %}
+                <p><a href="/profile/{{ i.reviewer }}">{{ i.username }}</a></p>
+                <p>{{ i.time_posted }}</p>
+                {% if i.reviewer == session.id %}
+                <form action="/remove_review/{{ i.id }}" method="post">
+                    <input type="submit" name="deleterev" value="Poista" />
+                </form>
+                {% endif %}
+
+            </li>
+            {% endfor %}
+        </ul>
+
+    </body>

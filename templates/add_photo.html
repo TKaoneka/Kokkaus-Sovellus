@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1><a href="/">Kokkilokki</a></h1>
+        <h2>Lisää profiilikuva</h2>
+        <p>Lähetä jpg-tiedosto jonka koko on maks. 100 KT</p>
+        <form action="/add_photo" method="post" enctype="multipart/form-data">
+            <p>
+              Kuva: <input type="file" name="photo" accept=".jpg" />
+            </p>
+            <input type="submit" value="Lähetä" />
+        </form>
+        <p style="color:red;">{{ i }}</p>
+    </body>
+
+</html>

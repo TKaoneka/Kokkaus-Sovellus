@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1><a href="/">Kokkilokki</a></h1>
+
+        <h2>{{ blog.title }}</h2>
+
+        <h4><a href="/profile/{{ blog.user_id }}">{{ user.username }}</a></h4>
+
+        <p>{{ blog.content }}</p>
+
+        {% if session.id == blog.user_id %}
+        <p><a href="/edit_blog/{{ blog.id }}">Muokkaa</a> | <a href="/remove_blog/{{ blog.id }}">Poista</a></p>
+        {% else %}
+        <form action="/new_comment/{{ blog.id }}" method="post">
+            <h3>Lisää kommentti</h3>
+            <p>
+                Kommentti: <br />
+                <textarea type="text" name="comment" rows="3" cols="40"></textarea>
+            </p>
+            <input type="submit" value="Lähetä" />
+        </form>
+        {% endif %}
+
+        <h3>Kommentit (yhteensä {{ total }})</h3>
+        <ul>
+            {% for i in comments %}
+            <li>
+                <p><b>{{ i.comment }}</b></p>
+                {% if i.has_pfp %}
+                <img src="/photo/{{ i.commenter }}" alt="kommentoijan profiilikuva"/>
+                {% endif %}
+                <p><a href="/profile/{{ i.commenter }}">{{ i.username }}</a></p>
+                <p><a href="/blog/{{ blog.id }}#{{ i.id }}"></a>{{ i.time_posted }}</p>
+                {% if i.commenter == session.id %}
+                <form action="/remove_comment/{{ i.id }}" method="post">
+                    <input type="submit" name="deletecom" value="Poista" />
+                </form>
+                {% endif %}
+
+            </li>
+            {% endfor %}
+        </ul>
+
+    </body>

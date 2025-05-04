@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1><a href="/">Kokkilokki</a></h1>
+
+        <h2>Profiili ({{ user.username }})</h2>
+
+        {% if user.has_pfp %}
+        <img src="/photo/{{ user_id }}" alt="profiilikuva"/>
+        <h3><a href="/add_photo">Vaihda kuva</a></h3>
+        {% else %}
+        <h3><a href="/add_photo">Lisää kuva</a></h3>
+        {% endif %}
+
+        {% if session.id == user_id %}
+        <p><a href="/new_recipe">Tee uusi resepti</a> tai <a href="/new_blog">kirjoita blogi</a></p>
+        <p><a href="/logout">Kirjaudu ulos</a></p>
+        {% endif %}
+
+        <h3>Reseptit ({{ totals.rtotal }})</h3>
+        <ul>
+            {% for recipe in recipes %}
+            <li>
+                <img src="/thumbnail/{{ recipe.id }}" />
+                <h4><a href="/recipe/{{ recipe.id }}">{{ recipe.title }}</a></h4>
+                <p>{{ recipe.time_posted }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Blogit ({{ totals.btotal }})</h3>
+        <ul>
+            {% for blog in blogs %}
+            <li>
+                <h4><a href="/blog/{{ blog.id }}">{{ blog.title }}</a></h4>
+                <p>{{ blog.time_posted }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if totals.atotal == 0 %}
+        <h3>Arvostelut (0)</h3>
+        {% else %}
+        <h3>Arvostelut ({{ totals.atotal }}, KA {{ totals.avg }})</h3>
+        {% endif %}
+        <ul>
+            {% for review in reviews %}
+            <li>
+                <h4><a href="/recipe/{{ review.post }}">{{ review.title }}</a></h4>
+                <h3>{{ review.stars }}/5</h3>
+                <p>{{ review.time_posted }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Kommentit ({{ totals.ctotal }})</h3>
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <h4><a href="/blog/{{ comment.post }}">{{ comment.title }}</a></h4>
+                <p>{{ comment.comment }}</p>
+                <p>{{ comment.time_posted }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        
+    </body>
+</html>

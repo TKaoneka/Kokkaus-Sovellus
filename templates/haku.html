@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1><a href="/">Kokkilokki</a></h1>
+        <form action="/search" method="get" size="60" maxlength="200">
+            <p>
+                Etsi:
+                {% if searchbar %}
+                <input type="text" name="searchbar" value="{{ searchbar }}" />
+                {% else %}
+                <input type="text" name="searchbar" />
+                {% endif %}
+            </p>
+            <input type="submit" value="Hae">
+        </form>
+
+        {% if searchbar %}
+        <h2>Hakutulokset</h2>
+        <h3>Reseptit</h3>
+        <ul>
+        {% for i in results %}
+            <li>
+                <img src="/thumbnail/{{ i.id }}" alt="reseptin lopputulos"/>
+                <p><a href="/recipe/{{ i.id }}">{{ i.title }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+        <h3>Blogit</h3>
+        <ul>
+        {% for i in results %}
+            <li>
+                <p><a href="/blog/{{ i.blogid }}">{{ i.blogtitle }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </body>
+</html>

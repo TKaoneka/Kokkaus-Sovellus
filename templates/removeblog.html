@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Kokkilokki</title>
+    </head>
+
+    <body>
+        <h1>Kokkilokki</h1>
+        <h2>Blogin poisto</h2>
+        <form action="/remove_blog/{{ blog_id }}" method="post">
+            <p>
+                Haluatko poistaa blogin?
+            </p>
+            <input type="submit" name="continue" value="Kyllä" />
+            <input type="submit" name="cancel" value="Ei" />
+        </form>
+    </body>
+</html>
