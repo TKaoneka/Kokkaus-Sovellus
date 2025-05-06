@@ -22,7 +22,31 @@ Kurssiprojektia varten haluan tehdä sovellusta ruuantekoa varten. Tämä on oll
 * Sovelluksen perus piirteet pitäisi olla paikoillaan. Nämä ovat ne piirteet, jotka antavat ihmisen luoda tilin, reseptin ja blogin huolimatta sekä hakea niitä postauksen tunnuksen tai otsikon perusteella
 * Sovellukseen on lisätty "kommentti" ja "arvostelu" ominaisuuksia, mutta niitä ei vielä ole toteutettu kunnolla 
 * Sovelluksen edelliset muodostetut sivut pitäisi toimia kuin on tahdottu
-* Tietokannasta ei voi vielä lajitella tai soudata tietoa
+* * Tietokannasta ei voi vielä lajitella tai soudata tietoa
 * Tietoa ei voida muokata tai poistaa, vain lisätä
 * Käyttäjä ei voi kirjautua ulos
 * (Myös pitäisi lisätä, että tietokanta ei ole .db muotona. Se on vieläkin SQL-tiedosto)
+
+(05.05.25.)
+Viimeisen lopullisen palautuksen perusteella, sanoisin että olen tyytyväinen sovelluksen toimivuuteen. Voisi olla parempi, mutta kuitenkin sovellus tekee suurimmaksi osaksi oikein kaikki asiat, ja löytyi vähemmän bugeja kuin kelasin. Kerron sovelluksen tilanteesta:
+* Sovellus voi luoda tilin ja hoitaa kaikki mahdolliset sivupyynnöt
+* Sovellus lisää kaikki tarvittavat tiedot resepteistä, blogeista, kommenteista ja arvioinneista tietokantaan
+* Sovellus antaa käyttäjän poistaa hänen tekemänsä reseptit, arvioinnit jne.
+* Sovellus antaa käyttäjän lisätä profiilikuvan sekä pikkukuvan ruuasta reseptiin
+* Sovelluksessa on kaikki tarvittavat turvamenetelmät (paitsi csrf-tokenin tarkastus, joka on lisätty jo viimeisimpään versioon)
+* (En lisännyt reseptin editointia vaihtoehtona tahallaan. Reseptiä voidaan vain poistaa)
+Seuraavaksi sovelluksessa ei ole:
+* Tapaa soudata tai lajitella esim. reseptejä (halusin alunperin lisätä eri vaihtoehtoja esim. ruuan lajittelu alueittain, ruuan tarkoitus ja keittoaika jne)
+* CSRF-token
+* Testattu sovelluksen nopeutta suurella määrällä tietoa eikä sivu piirrettä (kuitenkin tärkeimmissä tietopyynnöissä on LIMIT 100)
+* Tapa poistaa kommentteja/arviointeja, joka aiheuttaa bugin joka näyttää väärälle reseptille tai blogille kommentit poistaessa jonkin reseptin tai blogin
+* CSS-tyyliä
+* muita pieniä piirteitä, jotka auttavat toimivuudella ja käytettävyydellä
+Sovelluksen koodi on myös kaikki samassa app-tiedostossa ja ei ole optimoitu. Sovelluksessa ei käytetty javascriptia paitsi reseptin tekemisessä, joka oli myös ainoa paikka projektissa jossa käytettiin CurreChattia avuksi
+
+Viimeisessä versiossa suurin osa sovelluksen puutteista ovat jo korjattu.
+Mikäli sovelluksessa on muita ongelmia, en niitä huomannut itse.
+
+Toivottavasti sovellus toimii ja nautitte konseptista!
+
+Thierry Kaoneka
